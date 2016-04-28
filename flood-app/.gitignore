@@ -1,0 +1,8 @@
+node_modules
+govuk
+logs
+public
+npm-debug.log
+views/layout.html
+config/pm2.json
+config/server.json

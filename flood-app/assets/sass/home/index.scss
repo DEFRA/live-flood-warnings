@@ -1,0 +1,37 @@
+@import '../banner';
+@import '../branding';
+@import 'conditionals';
+
+#home-page {
+  .search-warnings {
+    margin-bottom: 0;
+    .form-control {
+      height: 46px;
+      padding: 5px 0 0 10px;
+      width: 100%;
+      margin-bottom: 5px;
+      @include media($max-width: 980px) {
+        width: 100%;
+      }
+      @include media($max-width: 640px) {
+        height: 33px;
+      }
+    }
+    #error-message {
+      border-left: 3px solid $error-colour;
+      color: $error-colour;
+      padding-left: 10px;
+      margin: 0 15px 0 0;
+      &:empty {
+        display: none;
+      }
+    }
+    .button-get-started {
+      width: 100%;
+      margin-top: 5px;
+      @include media($max-width: 980px) {
+        margin: 10px 0 0;
+      }
+    }
+  }
+}

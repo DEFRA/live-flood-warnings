@@ -1,0 +1,6 @@
+.column-three-quarters {
+  @include grid-column( 3/4 );
+}
+.column-seven-eights {
+  @include grid-column( 7/8 );
+}

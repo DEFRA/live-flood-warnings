@@ -1,0 +1,40 @@
+# Watch a single javascript bundle
+#
+# Usage
+# npm run watch:js -- home
+# npm run watch:js -- map
+# npm run watch:js -- warnings
+# npm run watch:js -- river-levels
+# npm run watch:js -- station
+
+case "$1" in
+
+'home')
+  echo "Watching home.js"
+  watchify assets/javascripts/home/index.js -d -s LFW.HomePage -o 'exorcist public/javascripts/home.js.map > public/javascripts/home.js'
+  ;;
+'map')
+  echo "Watching map.js"
+  watchify assets/javascripts/map/index.js -d -s LFW.MapPage -o 'exorcist public/javascripts/map.js.map > public/javascripts/map.js'
+  ;;
+'warnings')
+  echo "Watching warnings.js"
+  watchify assets/javascripts/warnings/index.js -d -s LFW.WarningsPage -o 'exorcist public/javascripts/warnings.js.map > public/javascripts/warnings.js'
+  ;;
+'river-levels')
+  echo "Watching river-levels.js"
+  watchify assets/javascripts/river-levels/index.js -d -s LFW.RiverLevelsPage -o 'exorcist public/javascripts/river-levels.js.map > public/javascripts/river-levels.js'
+  ;;
+'station')
+  echo "Watching station.js"
+  watchify assets/javascripts/station/index.js -d -s LFW.StationPage -o 'exorcist public/javascripts/station.js.map > public/javascripts/station.js'
+  ;;
+'stations-overview')
+  echo "Watching stations-overview.js"
+  watchify assets/javascripts/stations-overview/index.js -d -s LFW.StationsOverviewPage -o 'exorcist public/javascripts/stations-overview.js.map > public/javascripts/stations-overview.js'
+  ;;
+*)
+  echo "Script '$1' is not found - exiting"
+  ;;
+
+esac

@@ -1,0 +1,2 @@
+#!/bin/bash
+browserify assets/javascripts/core/index.js -d -s LFW.Core | exorcist public/javascripts/core.js.map > public/javascripts/core.js

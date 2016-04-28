@@ -1,0 +1,99 @@
+@import 'govuk-elements';
+@import 'branding';
+@import 'util';
+@import 'grids';
+
+/* Beta phase content block formatting context */
+.phase-content {
+  display: block;
+  overflow: hidden;
+}
+
+/* Content Intro */
+#content .intro {
+  h1 {
+    margin-bottom: 0;
+  }
+  time.form-hint {
+    margin: 1em 0;
+    display: block;
+  }
+  a {
+    &.warning {
+      text-decoration: none;
+    }
+    &.alert {
+      text-decoration: none;
+    }
+  }
+  a.banner {
+    outline: none;
+  }
+}
+
+/* Map Container */
+.map-min {
+  height: 450px;
+  overflow: hidden;
+  @include media($max-width: 500px) {
+    height: 350px;
+  }
+}
+
+button {
+  &.ol-full-screen-false {
+    width: auto;
+    padding: 5px;
+    font-weight: normal;
+    &:after {
+      content: '';
+    }
+  }
+}
+
+strong {
+  font-weight: 700;
+}
+
+*[tabindex="0"] {
+  outline: none;
+}
+
+/* Placeholders */
+input::-webkit-input-placeholder {
+  color: #6f777b !important;
+}
+input:-moz-placeholder {
+  /* Firefox 18- */
+  color: #6f777b !important;
+}
+input::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #6f777b !important;
+}
+input:-ms-input-placeholder {
+  color: #6f777b !important;
+}
+
+/* Error message */
+#error-message {
+  clear: both;
+  display: block;
+  padding-left: 10px;
+  margin: 10px 15px 0 0;
+  border-left: 3px solid $error-colour;
+  color: $error-colour;
+  &:empty {
+    margin-top: 0;
+  }
+}
+
+/* Details summary indent panel */
+details {
+  .panel-border-narrow {
+    margin-left: 4px;
+  }
+  .panel.panel-border-wide {
+    margin-left: 1px;
+  }
+}

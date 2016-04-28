@@ -1,0 +1,2 @@
+#!/bin/bash
+browserify assets/javascripts/warnings/index.js -d -s LFW.WarningsPage | exorcist public/javascripts/warnings.js.map > public/javascripts/warnings.js

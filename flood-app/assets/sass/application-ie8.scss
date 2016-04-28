@@ -1,0 +1,15 @@
+// BASE STYLESHEET FOR IE 8 COMPILER
+$is-ie: true;
+$ie-version: 8;
+@import "application.scss";
+// Form & Button Fix for 8
+.search-warnings {
+  .form-control {
+    width: 73%;
+    height: 46px;
+  }
+  .button {
+    margin: 0;
+    float: right;
+  }
+}

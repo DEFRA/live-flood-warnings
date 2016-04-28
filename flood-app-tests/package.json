@@ -1,0 +1,18 @@
+{
+  "name": "flood-app-e2e",
+  "version": "0.0.1",
+  "description": "end to end test project for flood-app",
+  "main": "index.js",
+  "scripts": {
+    "lint": "standard",
+    "test-e2e-local": "bin/test-e2e.js --env default -c config/nightwatch.json",
+    "test-e2e-remote": "bin/test-e2e.js --env android,iPhone,ie,iPad-Retina,safari -c config/saucelabs.json",
+    "test": "npm run lint && npm run test-e2e-local"
+  },
+  "devDependencies": {
+    "nightwatch": "0.8.15",
+    "standard": "5.4.1"
+  },
+  "author": "",
+  "license": "ISC"
+}

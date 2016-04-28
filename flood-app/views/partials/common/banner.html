@@ -1,0 +1,12 @@
+{{#if banner}}
+  {{#if banner.url}}
+    <a href="{{banner.url}}" class="message severity-{{banner.severity}}">
+      <img src="{{{assetPath}}}images/{{banner.icon}}-icon.gif" alt="{{banner.icon}}">
+      {{banner.message}}&nbsp;<span class="pseudo-link">View details</span>
+    </a>
+  {{else}}
+    <div class="message">
+      {{banner.message}}
+    </div>
+  {{/if}}
+{{/if}}

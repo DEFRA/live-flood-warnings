@@ -1,0 +1,38 @@
+<div class="grid-row">
+  <div class="column-third">
+    <a class="severity severity-{{summary.0.severity}}" href="/warnings{{#if summary.0.count}}#{{summary.0.hash}}{{/if}}">
+      <h3 class="heading-xlarge {{#if summary.0.count}}flag{{/if}}">
+        <img src="{{{assetPath}}}images/{{summary.0.hash}}-icon.gif" alt="{{summary.0.pluralisedTitle}}">{{summary.0.count}}
+      </h3>
+      <div class="details">
+        <div class="title">{{summary.0.pluralisedTitle}}</div>
+        <div class="tagline">{{summary.0.tagline}}</div>
+        <div class="description" title="{{summary.0.description}}">{{summary.0.description}}</div>
+      </div>
+    </a>
+  </div>
+  <div class="column-third">
+    <a class="severity severity-{{summary.1.severity}}" href="/warnings{{#if summary.1.count}}#{{summary.1.hash}}{{/if}}">
+      <h3 class="heading-xlarge">
+        <img src="{{{assetPath}}}images/{{summary.1.hash}}-icon.gif" alt="{{summary.1.pluralisedTitle}}">{{summary.1.count}}
+      </h3>
+      <div class="details">
+        <div class="title">{{summary.1.pluralisedTitle}}</div>
+        <div class="tagline">{{summary.1.tagline}}</div>
+        <div class="description" title="{{summary.1.description}}">{{summary.1.description}}</div>
+      </div>
+    </a>
+  </div>
+  <div class="column-third">
+    <a class="severity severity-{{summary.2.severity}}" href="/warnings{{#if summary.2.count}}#{{summary.2.hash}}{{/if}}">
+      <h3 class="heading-xlarge">
+        <img src="{{{assetPath}}}images/{{summary.2.hash}}-icon.gif" alt="{{summary.2.pluralisedTitle}}">{{summary.2.count}}
+      </h3>
+      <div class="details">
+        <div class="title">{{summary.2.pluralisedTitle}}</div>
+        <div class="tagline">{{summary.2.tagline}}</div>
+        <div class="description" title="{{summary.2.description}}">{{summary.2.description}}</div>
+      </div>
+    </a>
+  </div>
+</div>

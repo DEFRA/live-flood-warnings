@@ -1,0 +1,119 @@
+@import 'conditionals';
+
+#map-container {
+  background-color: #e2e4e5;
+  .map-info {
+    padding: 10px;
+    p {
+      margin-bottom: 0;
+      img {
+        vertical-align: middle;
+      }
+    }
+  }
+
+  &.map-enlarge {
+    background: $page-colour;
+    position: fixed !important;
+    margin: 0;
+    padding-top: 0;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    #map {
+      height: 100%;
+    }
+    .map-controls {
+      padding: 5px;
+    }
+  }
+}
+
+.map-controls {
+
+  padding: 10px;
+
+  nav {
+    float: right;
+    display: block;
+    padding-top: 6px;
+    @include media($max-width: 800px) {
+      width: 100%;
+    }
+
+    .toggle-map {
+      @include media($max-width: 800px) {
+        float: right;
+        margin-right: 0;
+      }
+    }
+
+    .fa {
+      display: inline-block;
+    }
+  }
+
+  form {
+    @include media($max-width: 800px) {
+      width: 100%;
+    }
+  }
+
+  i {
+    color: $link-colour;
+    margin-left: 10px;
+  }
+
+  a {
+    margin-right: 15px;
+  }
+
+  .form-label {
+    float: left;
+    padding-right: 15px;
+    padding-top: 7px;
+    @include media($max-width: 525px) {
+      display: none;
+    }
+  }
+
+  input {
+    float: left;
+    width: 40%;
+    padding: 4px 6px 2px 9px;
+    @include media($max-width: 800px) {
+      margin: auto;
+      width: 70%;
+    }
+    @include media($max-width: 525px) {
+      width: 80%;
+    }
+    @include media($max-width: 400px) {
+      width: 70%;
+    }
+    @include media($max-width: 280px) {
+      width: 60%;
+    }
+  }
+
+  .button {
+    float: left;
+    margin: 0;
+    width: 48px;
+    height: 34px;
+    @include media($max-width: 640px) {
+      width: 40px;
+      height: 29px;
+    }
+
+    i {
+      width: 21px;
+      margin-left: -1px;
+      color: $page-colour;
+    }
+  }
+}

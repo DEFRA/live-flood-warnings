@@ -1,0 +1,8 @@
+cp node_modules/jquery/dist/jquery.min.js public/javascripts/jquery.min.js
+cp node_modules/jquery/dist/jquery.min.js public/javascripts/jquery.min.map
+cp node_modules/openlayers/css/ol.css public/stylesheets/ol.css
+cp assets/fonts public/fonts -r
+cp assets/images public/images -r
+cp assets/robots.txt public/robots.txt
+cp node_modules/datatables.net-dt/css/jquery.dataTables.css public/stylesheets/jquery.dataTables.css
+cp node_modules/datatables.net-dt/images/* public/images

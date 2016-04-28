@@ -1,0 +1,92 @@
+<link rel="stylesheet" type="text/css" property="stylesheet" href="{{{assetPath}}}stylesheets/home/index.css">
+<main id="home-page" data-test-info="{{testDataJSON}}">
+  <header class="intro">
+    <h1 class="heading-xlarge" title="Live flood warning information" tabindex="0">Flood information service</h1>
+    <time class="form-hint" title="{{formatDate date}}" datetime="{{date}}" tabindex="0">{{formatDate date}}</time>
+  </header>
+  <div class="grid-row">
+    <div class="column-seven-eights">
+      <section class="notifications-banner">
+        <h2 class="heading-medium" tabindex="0">Flood warnings currently issued for England and Wales</h2>
+        <span tabindex="0" class="sr-fix">{{bannerMessage}}</span>
+        {{> warnings/summary}}
+        <div class="grid-row">
+          <div class="column-third">
+            <h3 class="heading-medium at-risk">Are you at risk now?</h3>
+          </div>
+          <div class="column-two-thirds">
+            <form id="entry-form" class="form-group search-warnings" method="get" action="/warnings" name="entry">
+              <label for="location" id="search-label" title="Search warnings and river levels in your location" class="sr-fix">Search warnings and river levels in your location</label>
+              <input id="location" class="form-control" type="text" placeholder="Enter a postcode or place in England or Wales" name="location" autocomplete="off">
+              <p id="error-message">{{{locationError}}}</p>
+              <button type="submit" id="start-button" class="button button-get-started">Check a location</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="grid-row">
+    <div class="column-three-quarters">
+      <section class="secondary-links">
+        <h2 class="heading-medium" tabindex="0">
+          Get the wider picture
+        </h2>
+        <div class="grid-row">
+          <div class="column-half">
+            <a class="media" href="/map">
+              <img class="img" src="{{{assetPath}}}images/ball-map.png" alt="View the current national flood situation">
+              <span class="content">View the current national flood situation</span>
+            </a>
+          </div>
+          <div class="column-half">
+            <a class="media" href="/river-and-sea-levels">
+              <img class="img" src="{{{assetPath}}}images/ball-river-sea-level.png" alt="View the latest river and sea levels near you">
+              <span class="content">View the latest river and sea levels near you</span>
+            </a>
+          </div>
+        </div>
+        <div class="grid-row">
+          <div class="column-half">
+            <a class="media" href="https://www.gov.uk/sign-up-for-flood-warnings">
+              <img class="img" src="{{{assetPath}}}images/ball-alerts.png" alt="Register to receive flood warnings by email, phone or text">
+              <span class="content">Register to receive flood warnings by email, phone or text</span>
+            </a>
+          </div>
+          <div class="column-half">
+            <a class="media" href="https://www.gov.uk/prepare-for-a-flood/find-out-if-youre-at-risk">
+              <img class="img" src="{{{assetPath}}}images/ball-risk.png" alt="View your property's long term risk of flooding">
+              <span class="content">View your property's long term risk of flooding</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <h2 class="heading-medium" tabindex="0">
+    Flood risk help and advice
+  </h2>
+  <a href="https://www.gov.uk/prepare-for-a-flood/make-a-flood-plan">Prepare for a flood and get help during and after</a>
+  <br><br>
+  <details>
+    <summary aria-controls="details-content-other-flood-info" aria-expanded="false" role="button">
+      <span class="summary">Other ways to get flood warning information</span>
+    </summary>
+    <div class="panel panel-border-narrow" id="details-content-other-flood-info" aria-hidden="true">
+      <p class="intro">For current flood warnings in force please call our 24-hour Floodline on:</p>
+      <ul class="contact-numbers">
+        <li><span class="contact-type">Telephone:</span> 0345 988 1188</li>
+        <li><span class="contact-type">Type talk:</span> 0345 602 6340 <em>(for the hard of hearing)</em></li>
+      </ul>
+      <div class="call-charges">
+      <p>
+        <a href="https://www.gov.uk/call-charges" rel="external" title="Find out more about call charges">Find out more about call charges</a>
+      </p>
+    </div>
+  </details>
+  <h2 class="heading-medium" tabindex="0">
+    {{> 'common/regional-title'}}
+  </h2>
+    {{> 'common/regional-links'}}
+</main>
+<script src="{{{assetPath}}}javascripts/home.js"></script>

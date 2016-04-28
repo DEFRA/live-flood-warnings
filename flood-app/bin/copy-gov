@@ -1,0 +1,5 @@
+cp node_modules/govuk-elements-sass/node_modules/govuk_frontend_toolkit/images public/images/icons -r
+cp node_modules/govuk-elements-sass/node_modules/govuk_frontend_toolkit/javascripts/* public/javascripts -r
+cp node_modules/govuk_template_mustache/assets/* public -r
+cp node_modules/govuk_template_mustache/views/layouts/govuk_template.html views &&
+mv views/govuk_template.html views/layout.html

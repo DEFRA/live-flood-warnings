@@ -1,0 +1,115 @@
+<li>
+  <details id="{{severity.hash}}" class="details-severity">
+    <summary id="summary-severity-{{severity.id}}" class="summary-severity" title="{{title}} - {{severity.subTitle}}" aria-controls="details-content-severity-{{severity.id}}" aria-expanded="false" role="button">
+      <div class="notifications-banner">
+        <span class="severity severity-{{summary.severity}}">
+          <h3 class="heading-xlarge">
+            <img src="/public/images/{{summary.hash}}-icon.gif" alt="{{summary.pluralisedTitle}}">{{summary.count}}
+          </h3>
+          <div class="details">
+            <div class="title">{{summary.pluralisedTitle}}</div>
+            <div class="tagline">{{summary.tagline}}</div>
+            <div class="description" title="{{summary.description}}">{{summary.description}}</div>
+          </div>
+        </span>
+      </div>
+    </summary>
+    <div id="details-content-severity-{{severity.id}}" class="details-content-severity">
+      <div class="details-content-severity-spacer"></div>
+      {{#if showFilter}}
+        <form class="filter nojs-hide ie-hide">
+          <div class="filter-container">
+            <label tabindex="0" class="sr-fix" for="filter-{{severity.id}}">Warnings filter</label>
+            <i class="fa fa-filter"></i>
+            <input id="filter-{{severity.id}}" class="form-control" type="text" placeholder="Type here to filter results" name="filter" autocomplete="off">
+            <button class="fa fa-close" type="reset"></button>
+          </div>
+        </form>
+      {{/if}}
+      {{#each notifications}}
+        <details id="details-{{key}}" class="details-notification">
+          <summary id="summary-{{key}}" class="summary-notification" aria-controls="details-content-fwa_key-{{key}}" aria-expanded="false" role="button">
+            <span title="{{title}}">{{{description}}}</span>
+          </summary>
+          <div id="details-content-fwa_key-{{key}}" class="warning-desc details-content-notification" aria-hidden="true">
+            <section class="grid-row">
+              <div class="column-three-quarters">
+                {{#if message}}
+                  <h3 class="heading-medium" tabindex="0">Latest Information</h3>
+                  <p>
+                    <span id="{{key}}-message" tabindex="0">{{message}}</span>
+                    {{#unless isExpired}}
+                      <time id="{{key}}-updated" datetime="{{messageDate}}" tabindex="0">Situation last changed {{formatDate messageDate}}</time>
+                    {{/unless}}
+                  </p>
+                {{/if}}
+                <section class="secondary-links">
+                  <h3 class="heading-medium nojs-hide ie-hide" tabindex="0">More Information</h3>
+                  {{#if isExpired}}
+                    <div class="grid-row">
+                      <div class="column-half">
+                        <a class="media" href="{{riversHref}}">
+                          <img class="img" src="/public/images/ball-river-sea-level.png" alt="Find out about river and sea levels in this area">
+                          <span id="{{key}}-rloi" class="content">Find out about river and sea levels in this area</span>
+                        </a>
+                      </div>
+                      <div class="column-half">
+                        <a class="media" href="https://www.gov.uk/sign-up-for-flood-warnings">
+                          <img class="img" src="/public/images/ball-alerts.png" alt="Sign up for flood warnings">
+                          <span class="content">Sign up for flood warnings</span>
+                        </a>
+                      </div>
+                    </div>
+                  {{else}}
+                    <div class="grid-row">
+                      <div class="column-half nojs-hide ie-hide">
+                        <a class="media" href="/map?fwa_key={{key}}" id="{{key}}-map">
+                          <img class="img" src="/public/images/ball-pin.png" alt="See a map of the area covered by this warning or alert">
+                          <span class="content">See a map of the area covered by this warning or alert</span>
+                        </a>
+                      </div>
+                      <div class="column-half">
+                        <a class="media" href="{{riversHref}}" id="{{key}}-rloi">
+                          <img class="img" src="/public/images/ball-river-sea-level.png" alt="Find out about river and sea levels in this area">
+                          <span class="content">Find out about river and sea levels in this area</span>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="grid-row">
+                      <div class="column-half">
+                        <a class="media" href="https://www.gov.uk/prepare-for-a-flood/get-help-during-a-flood">
+                          <img class="img" src="/public/images/ball-home.png" alt="Prepare for a flood">
+                          <span class="content">Prepare for a flood</span>
+                        </a>
+                      </div>
+                      <div class="column-half">
+                        <a class="media" href="https://www.gov.uk/sign-up-for-flood-warnings">
+                          <img class="img" src="/public/images/ball-alerts.png" alt="Sign up for flood warnings">
+                          <span class="content">Sign up for flood warnings</span>
+                        </a>
+                      </div>
+                    </div>
+                  {{/if}}
+                </section>
+              </div>
+
+              <div class="column-quarter">
+                <img src="/public/images/{{iconName}}-icon.gif" alt="">
+                <h4 class="heading-small">{{severity.title}}</h4>
+                <p>{{severity.tagline}}</p>
+                <p>{{severity.description}}</p>
+                {{#if isExpired}}
+                  <h2 class="heading-medium">No longer in force</h2>
+                  <h3 class="heading-small"><time datetime="{{severityDate}}" tabindex="0">{{formatDate severityDate}}</time></h3>
+                {{else}}
+                  <h2 class="heading-large">In force</h2>
+                  <h3 class="heading-small"><time datetime="{{date}}" tabindex="0">{{formatDate date}}</time></h3>
+                {{/if}}
+              </div>
+            </section>
+          </div>
+        </details>
+      {{/each}}
+    </div>
+  </details>
+</li>

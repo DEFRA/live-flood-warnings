@@ -1,0 +1,182 @@
+<link rel="stylesheet" type="text/css" property="stylesheet" href="{{{assetPath}}}stylesheets/ol.css">
+<link rel="stylesheet" type="text/css" property="stylesheet" href="{{{assetPath}}}stylesheets/river-levels/index.css">
+<main id="river-levels-page">
+  <header class="intro">
+    {{#if formattedLocation}}
+      <h1 class="heading-xlarge" tabindex="0">River and Sea Levels for:<br>{{formattedLocation}}</h1>
+    {{else}}
+      <h1 class="heading-xlarge" tabindex="0" title="River and sea levels in England">River and sea levels in England</h1>
+    {{/if}}
+    <time class="form-hint" title="{{formatDate date}}" datetime="{{date}}" tabindex="0">{{formatDate date}}</time>
+    <p>
+      {{#if isLocalised}}
+        River and sea levels are regularly checked by a network of monitoring stations. These levels can help you understand
+        your flood risk now and in the next few days. Enter a river name postcode or place to find your nearest station. Or
+        select one from the map.
+      {{else}}
+        River and sea levels are regularly checked by this network of monitoring stations. These levels can help you
+        understand your food risk now and in the next few days. Enter a river name, postcode or place to get information from
+        your nearest stations. Or use the map to explore an area and the stations within it.
+      {{/if}}
+    </p>
+  </header>
+  <div id="map-container">
+    <div class="map-controls">
+      <div class="clearfix">
+        <form>
+          <label class="form-label" for="txtSearch">Location</label>
+          <input id="txtSearch" name="location" title="Enter a place or postcode in England" placeholder="Enter a place or postcode in England" type="text">
+          <button id="mapSearch" title="Search Location" class="button"><i class="fa fa-search" title="Search Location"></i></button>
+        </form>
+        <div class="nojs-hide ie-hide">
+          <nav>
+            <a class="toggle-base" title="Earth view" href="#">Earth view<i class="fa fa-earth" title="Earth view"></i></a>
+            <a class="toggle-map" title="Full screen" href="#">Full screen<i class="fa fa-expand" title="Full screen"></i></a>
+          </nav>
+        </div>
+      </div>
+      <div id="error-message">{{errorMessage}}</div>
+    </div>
+
+  {{#if isLocalised}}
+    <div class="local-details">
+
+      {{> common/banner}}
+
+      <div class="inner-content">
+        {{#if stations}}
+          <h3 class="heading-medium nojs-hide ie-hide" tabindex="0">5-day river level information for this area</h3>
+          <h3 class="heading-medium nojs-show" tabindex="0">More river level information for this area</h3>
+          <h3 class="heading-medium ie-show">More river level information for this area</h3>
+          <p tabindex="0">
+            You can get more information about local river and sea levels.<br>
+            <span class="nojs-hide ie-hide">Select a monitoring station from this list, or use the map.</span>
+            <span class="nojs-show">Select a monitoring station from this list.</span>
+            <span class="ie-show">Select a monitoring station from this list.</span>
+          </p>
+        {{else}}
+          <h3 class="heading-medium">No river or sea levels stations have been found for this location.</h3>
+          <p class="nojs-hide ie-hide">
+            Please use the options below to broaden your search to find other nearby stations.
+          </p>
+        {{/if}}
+
+        <div class="station-links">
+          {{#if isGrouped}}
+            {{#each stations}}
+              <details data-region-id="summary-region-{{@key}}">
+                <summary aria-controls="details-content-{{@key}}" aria-expanded="false" role="button">
+                  {{@key}}
+                </summary>
+                <div id="details-content-{{@key}}" aria-hidden="true">
+                  <ul class="station-list">
+                    {{#each this}}
+                      {{#if this.isMulti}}
+                        <li class="station" data-station-id="{{id}}">
+                          {{#unless isWales}}
+                            <a href="/station/{{id}}?direction={{qualifier}}">{{river}} at {{name}} ({{direction}} data) {{#if isSuspended}}- temporarily out of service{{/if}}</a>
+                          {{else}}
+                            <a href="http://rloi.naturalresources.wales/ViewDetails?station={{id}}" target="_blank">{{river}} at {{name}} (upstream data) {{#if isSuspended}}- temporarily out of service{{/if}}</a>
+                          {{/unless}}
+                        </li>
+                      {{else}}
+                        <li class="station" data-station-id="{{id}}">
+                          {{#unless isWales}}
+                            <a href="/station/{{id}}">{{river}} at {{name}} {{#if isSuspended}}- temporarily out of service{{/if}}</a>
+                          {{else}}
+                            <a href="http://rloi.naturalresources.wales/ViewDetails?station={{id}}" target="_blank">{{river}} at {{name}} {{#if isSuspended}}- temporarily out of service{{/if}}</a>
+                          {{/unless}}
+                        </li>
+                      {{/if}}
+                    {{/each}}
+                  </ul>
+                </div>
+              </details>
+            {{/each}}
+          {{else}}
+            {{#if stations}}
+              <ul class="station-list">
+              {{#each stations}}
+                {{#if this.isMulti}}
+                <li class="station" data-station-id="{{id}}">
+                  {{#unless isWales}}
+                    <a href="/station/{{id}}?direction={{qualifier}}">{{river}} at {{name}} ({{direction}} data) {{#if isSuspended}}- temporarily out of service{{/if}}</a>
+                  {{else}}
+                    <a href="http://rloi.naturalresources.wales/ViewDetails?station={{id}}?direction={{qualifier}}" target="_blank">{{river}} at {{name}} (upstream data) {{#if isSuspended}}- temporarily out of service{{/if}}</a>
+                  {{/unless}}
+                </li>
+                {{else}}
+                  <li class="station" data-station-id="{{id}}">
+                    {{#unless isWales}}
+                      <a href="/station/{{id}}">{{river}} at {{name}} {{#if isSuspended}}- temporarily out of service{{/if}}</a>
+                    {{else}}
+                      <a href="http://rloi.naturalresources.wales/ViewDetails?station={{id}}" target="_blank">{{river}} at {{name}} {{#if isSuspended}}- temporarily out of service{{/if}}</a>
+                    {{/unless}}
+                  </li>
+                {{/if}}
+              {{/each}}
+              </ul>
+            {{/if}}
+          {{/if}}
+          {{#if provideLocalLinkToNrw}}
+            <br>
+            {{> 'river-levels/nrw'}}
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  {{/if}}
+
+    {{> 'river-levels/station-map'}}
+
+  </div>
+  <div>
+    <p class="nojs-show"><strong>You&#39;re missing out. A map should be visible here.</strong><br>Javascript must be enabled.</p>
+    <p class="ie-show">Use of Internet Explorer requires version 9 or later to access maps.</p>
+  </div>
+  <br>
+  <section class="notifications-banner">
+    {{> warnings/summary}}
+  </section>
+  <br>
+  <div>
+    <div class="secondary-links">
+      <div class="grid-row">
+        <div class="column-third">
+          <a class="media" href="/">
+            <img class="img" src="{{{assetPath}}}images/ball-home.png" alt="National flood information service">
+            <span class="content">National flood information service</span>
+          </a>
+        </div>
+        <div class="column-third">
+          <a class="media" href="https://www.gov.uk/prepare-for-a-flood/find-out-if-youre-at-risk">
+            <img class="img" src="{{{assetPath}}}images/ball-risk.png" alt="View your property's long term risk of flooding">
+            <span class="content">View your property's long term risk of flooding</span>
+          </a>
+        </div>
+        <div class="column-third">
+          <a class="media" href="/map">
+            <img class="img" src="{{{assetPath}}}images/ball-map.png" alt="View the current national flood situation">
+            <span class="content">View the current national flood situation</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <br>
+    {{> 'common/regional-details'}}
+    <br>
+    {{#if provideNationalLinkToNrw}}
+      {{> 'river-levels/nrw'}}
+    {{/if}}
+  </div>
+</main>
+<script src="{{{assetPath}}}javascripts/river-levels.js"></script>
+<script>
+  $(function () {
+    (new LFW.RiverLevelsPage({
+      map: {
+        centroid: {{{centroidJSON}}}
+      }
+    }))
+  })
+</script>

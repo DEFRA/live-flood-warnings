@@ -1,0 +1,189 @@
+@import 'conditionals';
+
+#map-station-parent {
+  height: 450px;
+  @include media($max-width: 500px) {
+    height: 350px;
+  }
+}
+
+button.ol-full-screen-false,
+button.ol-full-screen-true {
+  width: auto;
+  padding: 5px;
+  font-weight: normal;
+}
+button.ol-full-screen-false:after,
+button.ol-full-screen-true:after {
+  content: "";
+}
+
+.map-enlarge {
+  .legend {
+    margin-top: 40px;
+  }
+  .local-details {
+    display: none;
+  }
+}
+
+#map-container {
+    position: relative;
+    background-color: #E2E4E5;
+
+    .fs {
+      position:relative;
+    }
+
+    @include media(tablet) {
+      .legend {
+        padding: 14px;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 90px;
+        bottom: 0px;
+        text-align: center;
+      }
+    }
+
+    .legend {
+
+      background-color: rgba(255, 255, 255, 0.8);
+
+      ul {
+        font-size: 14px;
+        display: inline-block;
+
+        li::before {
+          width: 25px;
+          height: 25px;
+          content: '';
+          display: inline-block;
+        }
+
+        li.round::before {
+          border-radius: 50%;
+          border: 1px solid #000;
+          border-radius: 50%;
+        }
+
+        li.round.amber::before {
+          background-color: #EC7A21;
+        }
+
+        li.round.blue::before {
+          background-color: #2A69AF;
+        }
+
+        li.round.grey::before {
+          background-color: #858585;
+        }
+
+        li.pin::before {
+          background-repeat: no-repeat;
+          background-position: left center;
+          background-size: 17px 25px;
+        }
+
+        li.pin.blue::before {
+          background-image: url(/public/images/icon-pin-blue.png);
+        }
+
+        li.pin.amber::before {
+          background-image: url(/public/images/icon-pin-amber.png);
+        }
+
+        li.pin.grey::before {
+          background-image: url(/public/images/icon-pin-grey.png);
+        }
+
+
+       @include media(mobile) {
+          li {
+            margin-right: 10px;
+            display: inline-block;
+
+            .round::before {
+              width: 20px;
+              height: 20px;
+              vertical-align: middle;
+            }
+
+            div {
+              display: inline;
+              margin-left: 3px;
+              vertical-align: middle;
+            }
+          }
+        }
+      }
+
+      @include media(mobile) {
+        strong {
+          margin-right: 10px;
+        }
+      }
+    }
+
+    @include media(tablet) {
+      .ol-attribution, .ol-full-screen {
+        margin-right: 125px;
+      }
+    }
+
+    .station-popup {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 1);
+      -webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+      filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+      padding: 15px;
+      border: 1px solid #ccc;
+      top: 25px;
+      right: -16px;
+      min-width: 200px;
+    }
+
+    .station-popup:after, .station-popup:before {
+      bottom: 100%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .station-popup:after {
+      border-bottom-color: white;
+      border-width: 16px;
+      right: 0px;
+    }
+
+    .station-popup:before {
+      border-bottom-color: #CCC;
+      border-width: 17px;
+      right: 0px;
+    }
+
+    .map:-moz-full-screen {
+      height: 100%;
+      width: 100%;
+    }
+
+    .map:-webkit-full-screen {
+      height: 100%;
+      width: 100%;
+    }
+
+    .map:-ms-fullscreen {
+      height: 100%;
+      width: 100%;
+    }
+
+    .map:fullscreen {
+      height: 100%;
+      width: 100%;
+    }
+
+  }

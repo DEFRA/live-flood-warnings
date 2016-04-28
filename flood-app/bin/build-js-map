@@ -1,0 +1,2 @@
+#!/bin/bash
+browserify assets/javascripts/map/index.js -d -s LFW.MapPage | exorcist public/javascripts/map.js.map > public/javascripts/map.js

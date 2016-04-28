@@ -1,0 +1,2 @@
+#!/bin/bash
+browserify assets/javascripts/home/index.js -d -s LFW.HomePage | exorcist public/javascripts/home.js.map > public/javascripts/home.js

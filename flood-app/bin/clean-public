@@ -1,0 +1,1 @@
+rm -rf public && mkdir public && mkdir public/javascripts && mkdir public/stylesheets

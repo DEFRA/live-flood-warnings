@@ -1,0 +1,53 @@
+{
+  "name": "flood-app",
+  "version": "0.4.3",
+  "description": "Live flood warnings app",
+  "main": "index.js",
+  "scripts": {
+    "start": "pm2 start config/pm2.json",
+    "clean": "bin/clean-public",
+    "copy": "npm run copy:assets && npm run copy:gov",
+    "copy:gov": "bin/copy-gov && bin/fix-layout.js",
+    "copy:assets": "bin/copy-assets",
+    "build:css": "bin/build-css",
+    "build:js": "bin/build-js",
+    "watch": "bin/watch",
+    "build": "npm run clean && npm run copy && npm run build:css && npm run build:js",
+    "lint": "standard",
+    "test": "npm run lint"
+  },
+  "author": "ea.gov.uk",
+  "license": "OGL",
+  "dependencies": {
+    "boom": "3.1.2",
+    "datatables.net": "1.10.11",
+    "datatables.net-dt": "1.10.11",
+    "details-summary": "0.0.1",
+    "glue": "3.2.0",
+    "good": "6.6.0",
+    "good-console": "5.3.1",
+    "good-file": "5.1.2",
+    "h2o2": "5.0.0",
+    "handlebars": "4.0.5",
+    "hapi": "13.0.0",
+    "inert": "3.2.0",
+    "joi": "8.0.2",
+    "jquery": "1.11.3",
+    "lout": "9.0.0",
+    "moment": "2.11.2",
+    "openlayers": "3.13.1",
+    "proj4": "2.3.12",
+    "sprintf-js": "1.0.3",
+    "vision": "4.0.1",
+    "wreck": "7.0.0"
+  },
+  "devDependencies": {
+    "browserify": "13.0.0",
+    "exorcist": "0.4.0",
+    "govuk-elements-sass": "1.1.2",
+    "govuk_template_mustache": "0.16.4",
+    "node-sass": "3.4.2",
+    "standard": "6.0.7",
+    "wisk": "0.0.1"
+  }
+}

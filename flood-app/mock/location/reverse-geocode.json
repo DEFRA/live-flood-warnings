@@ -1,0 +1,61 @@
+{
+  "authenticationResultCode": "ValidCredentials",
+  "brandLogoUri": "http://dev.virtualearth.net/Branding/logo_powered_by.png",
+  "copyright": "Copyright © 2016 Microsoft and its suppliers. All rights reserved. This API cannot be accessed and the content and any results may not be used, reproduced or transmitted in any manner without express written permission from Microsoft Corporation.",
+  "resourceSets": [
+    {
+      "estimatedTotal": 1,
+      "resources": [
+        {
+          "__type": "Location:http://schemas.microsoft.com/search/local/ws/rest/v1",
+          "bbox": [
+            54.596627282429324,
+            -3.160290093095954,
+            54.60435271757068,
+            -3.1425099069040465
+          ],
+          "name": "Street, Keswick, CA12 5",
+          "point": {
+            "type": "Point",
+            "coordinates": [
+              54.60049,
+              -3.1514
+            ]
+          },
+          "address": {
+            "addressLine": "Street",
+            "adminDistrict": "England",
+            "adminDistrict2": "Cumbria",
+            "countryRegion": "United Kingdom",
+            "formattedAddress": "Street, Keswick, CA12 5",
+            "locality": "Keswick",
+            "postalCode": "CA12 5",
+            "countryRegionIso2": "GB"
+          },
+          "confidence": "Medium",
+          "entityType": "Address",
+          "geocodePoints": [
+            {
+              "type": "Point",
+              "coordinates": [
+                54.60049,
+                -3.1514
+              ],
+              "calculationMethod": "Interpolation",
+              "usageTypes": [
+                "Display",
+                "Route"
+              ]
+            }
+          ],
+          "matchCodes": [
+            "Good"
+          ]
+        }
+      ]
+    }
+  ],
+  "statusCode": 200,
+  "statusDescription": "OK",
+  "traceId": "f6faa8e86df84babad022ac3644ecf00|DB40170149|02.00.131.2700|DB4SCH010060562, DB4SCH010061351"
+}

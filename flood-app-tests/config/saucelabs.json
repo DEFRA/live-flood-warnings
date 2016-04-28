@@ -1,0 +1,78 @@
+{
+  "src_folders": [
+    "tests"
+  ],
+  "test_workers" : true,
+  "output_folder": "tests",
+  "test_settings" : {
+    "default" : {
+      "launch_url": "http://localhost:3000",
+      "selenium_host" : "ondemand.saucelabs.com",
+      "selenium_port" : 80,
+      "username" : "${SAUCE_USERNAME}",
+      "access_key" : "${SAUCE_ACCESS_KEY}",
+      "use_ssl" : false,
+      "silent" : true,
+      "output" : true,
+      "screenshots" : {
+        "enabled" : false,
+        "on_failure" : true,
+        "path" : "test/e2e/reports/screenshots"
+      },
+      "desiredCapabilities": {
+        "browserName": "firefox"
+      }
+    },
+    "android" : {
+      "desiredCapabilities": {
+        "browserName" : "Browser",
+        "appiumVersion" : "1.4.16",
+        "deviceName" : "Samsung Galaxy Nexus Emulator",
+        "platformVersion" : "4.4",
+        "platformName" : "Android"
+      }
+    },
+    "chrome" : {
+      "desiredCapabilities": {
+        "browserName": "chrome"
+      }
+    },
+    "ie" : {
+      "desiredCapabilities": {
+        "browserName" : "internet explorer",
+        "platform" : "Windows 7",
+        "version" : "11.0"
+      }
+    },
+    "iPhone" : {
+      "desiredCapabilities": {
+        "appiumVersion" : "1.4.16",
+        "browserName": "Safari",
+        "deviceName": "iPhone 6",
+        "platformVersion" : "9.2",
+        "platformName" : "iOS"
+      }
+    },
+    "iPad-Retina" : {
+      "desiredCapabilities": {
+        "appiumVersion" : "1.4.16",
+        "browserName": "Safari",
+        "deviceName" : "iPad Retina",
+        "platformVersion ": "9.2",
+        "platformName" : "iOS"
+      }
+    },
+    "opera" : {
+      "desiredCapabilities": {
+        "browserName": "opera"
+      }
+    },
+    "safari" : {
+        "desiredCapabilities": {
+          "browserName" : "safari",
+          "platform" : "OS X 10.11",
+          "version" : "9.0"
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+node_modules
+logs
+npm-debug.log
+config/pm2.json
+config/server.json

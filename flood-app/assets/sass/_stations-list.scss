@@ -1,0 +1,16 @@
+ul.station-list {
+  list-style-type: none;
+  li.station {
+    padding-top: 5px;
+    padding-left: 25px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-image: url(/public/images/icon-pin-blue.png);
+    background-size: 15px 22px;
+    &:hover,
+    &.hover {
+      background-image: url(/public/images/icon-pin-blue-hl.png);
+    }
+  }
+
+}

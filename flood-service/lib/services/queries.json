@@ -1,0 +1,8 @@
+{
+  "allAlertsAndWarnings": "select fwa_code, fwa_key, description, area_floodline_quickdial_id,region, area, flood_type, severity, severity_description, warning_key, raised, severity_changed, message_changed, message, ST_AsText(ST_Centroid) centroid, st_asgeojson(ST_Centroid) centroid_json from u_flood.current_flood_warning_alert_mview ORDER BY severity; Select load_timestamp from u_flood.current_load_timestamp where id = 1;",
+  "alertsByEnvelope" : "SELECT fwa_key FROM u_flood.current_flood_warning_alert_mview where ST_Intersects(geom, ST_Transform(ST_Buffer(ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 27700), 2000), 4326))",
+  "stationsByRadius" : "SELECT rloi_id, telemetry_id, region, catchment, wiski_river_name, agency_name, external_name, station_type, status, qualifier, (lower(region) = 'wales' OR rloi_id IN (4162, 4170, 4173, 4174, 4176)) AS isWales FROM u_flood.station_split_mview WHERE ST_DWithin(geography, ST_MakePoint($1, $2)::geography, $3) AND lower(status) != 'closed' AND (lower(region) != 'wales' OR catchment IN ('Dee', 'Severn Uplands', 'Wye')) ORDER BY wiski_river_name, agency_name;",
+  "station" : "SELECT * FROM u_flood.station_split_mview where rloi_id = $1 and qualifier = $2",
+  "telemetry" : "SELECT * FROM u_flood.get_telemetry($1, $2)",
+  "stationsOverview" : "select array_to_json(array_agg(row_to_json(d))) as get_stations_overview from (SELECT * FROM u_flood.stations_overview_mview) d"
+}

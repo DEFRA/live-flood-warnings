@@ -1,0 +1,2 @@
+#!/bin/bash
+browserify assets/javascripts/stations-overview/index.js -d -s LFW.StationsOverviewPage | exorcist public/javascripts/stations-overview.js.map > public/javascripts/stations-overview.js

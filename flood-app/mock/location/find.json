@@ -1,0 +1,43 @@
+{
+  "__type": "Location:http://schemas.microsoft.com/search/local/ws/rest/v1",
+  "bbox": [
+    51.40724182128906,
+    -2.658190965652466,
+    51.50679016113281,
+    -2.528005599975586
+  ],
+  "name": "Bristol, Bristol",
+  "point": {
+    "type": "Point",
+    "coordinates": [
+      51.45378875732422,
+      -2.5916800498962402
+    ]
+  },
+  "address": {
+    "adminDistrict": "England",
+    "adminDistrict2": "Bristol",
+    "countryRegion": "United Kingdom",
+    "formattedAddress": "Bristol, England",
+    "locality": "Bristol",
+    "countryRegionIso2": "GB"
+  },
+  "confidence": "High",
+  "entityType": "PopulatedPlace",
+  "geocodePoints": [
+    {
+      "type": "Point",
+      "coordinates": [
+        51.45378875732422,
+        -2.5916800498962402
+      ],
+      "calculationMethod": "Rooftop",
+      "usageTypes": [
+        "Display"
+      ]
+    }
+  ],
+  "matchCodes": [
+    "Good"
+  ]
+}

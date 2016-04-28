@@ -1,0 +1,36 @@
+@import 'branding';
+
+.message {
+  display: block;
+  margin: 30px 0 0;
+  background: $grey-3;
+  padding: 8px 10px 5px;
+  text-decoration: none;
+
+  img {
+    width: 30px;
+    vertical-align: middle;
+  }
+  &.severity-1, &.severity-2 {
+    background: $flood-warning;
+    color: $page-colour;
+  }
+  &.severity-3 {
+    background: $flood-alert;
+    color: $black;
+  }
+  &.banner-error {
+    background: white;
+    border: 1px solid #bfc1c3;
+  }
+  span.pseudo-link {
+    text-decoration: underline;
+  }
+  &:focus {
+    outline: 3px solid #ffbf47;
+  }
+}
+
+a.banner {
+ outline: none;
+}

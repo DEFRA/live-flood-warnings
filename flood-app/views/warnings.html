@@ -1,0 +1,59 @@
+<link rel="stylesheet" type="text/css" property="stylesheet" href="{{{assetPath}}}stylesheets/warnings/index.css">
+<main id="warnings-page" data-test-info="{{testDataJSON}}">
+  <header class="intro">
+    <h1 id="title" class="heading-large" title="{{title}}" tabindex="0">Flood warnings for: <br>
+      <span class="heading-xlarge">{{title}}</span>
+    </h1>
+    <span id="error-message">{{{errorMessage}}}</span>
+    <time class="form-hint" title="{{formatDate date}}" datetime="{{date}}" tabindex="0">{{formatDate date}}</time>
+    <h2 tabindex="0">{{bannerMessage}}</h2>
+  </header>
+  <div class="warnings-container">
+    <div class="warnings-search">
+      <form class="form-group" method="get" action="/warnings">
+        <label for="location" title="Search warnings and river levels in your location" class="sr-fix">Search warnings and river levels in your location</label>
+        <input id="location" class="form-control" type="text" value="{{location}}" placeholder="Enter a postcode or place in England or Wales" name="location" autocomplete="off">
+        <button type="submit" class="button">Check a location</button>
+      </form>
+    </div>
+    {{#if hasPanels}}
+      <ul class="warnings-list">
+        {{#each panels}}
+          {{> warnings/panel}}
+        {{/each}}
+      </ul>
+    {{/if}}
+  </div>
+  <br>
+  <br>
+  <div class="secondary-links">
+    <div class="grid-row">
+      <div class="column-third">
+        <a class="media" href="/map">
+          <img class="img" src="{{{assetPath}}}images/ball-map.png" alt="View the current national flood situation">
+          <span class="content">View the current national flood situation</span>
+        </a>
+      </div>
+      <div class="column-third">
+        <a class="media" href="{{#if isLocalised}}/river-and-sea-levels?location={{location}}{{else}}/river-and-sea-levels{{/if}}">
+          <img class="img" src="{{{assetPath}}}images/ball-river-sea-level.png" alt="View the latest river and sea levels near you">
+          <span class="content">View the latest river and sea levels near you</span>
+        </a>
+      </div>
+      <div class="column-third">
+        <a class="media" href="/">
+          <img class="img" src="{{{assetPath}}}images/ball-home.png" alt="National flood information service">
+          <span class="content">National flood information service</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</main>
+<script src="{{{assetPath}}}javascripts/warnings.js"></script>
+<script>
+  $(function () {
+    (new LFW.WarningsPage({
+      isLocalised: {{isLocalised}}
+    }))
+  })
+</script>

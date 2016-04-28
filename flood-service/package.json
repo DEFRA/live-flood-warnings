@@ -1,0 +1,27 @@
+{
+  "name": "flood-service",
+  "version": "0.4.3",
+  "description": "Flood Service",
+  "main": "index.js",
+  "scripts": {
+    "start": "pm2 start config/pm2.json",
+    "lint": "standard",
+    "test": "npm run lint"
+  },
+  "author": "ea.gov.uk",
+  "license": "ISC",
+  "dependencies": {
+    "boom": "3.1.2",
+    "glue": "3.2.0",
+    "good": "6.6.0",
+    "good-console": "5.3.1",
+    "good-file": "5.1.2",
+    "hapi": "13.0.0",
+    "hapi-node-postgres": "3.0.1",
+    "joi": "8.0.2",
+    "pg": "4.4.6"
+  },
+  "devDependencies": {
+    "standard": "6.0.7"
+  }
+}

@@ -1,0 +1,71 @@
+@import 'branding';
+@import 'conditionals';
+
+.notifications-banner {
+  padding: 15px;
+  background-color: #e2e4e5;
+  .heading-small,
+  .heading-medium,
+  .heading-large,
+  .heading-xlarge {
+    margin: 0;
+  }
+  .grid-row {
+    margin-top: 15px;
+  }
+  .at-risk {
+    font-size: 27px;
+    margin-top: 11px;
+  }
+  .severity {
+    border-left-style: solid;
+    border-left-width: 12px;
+    margin-bottom: 10px;
+    display: block;
+    color: #0b0c0c;
+    text-decoration: none;
+    &.severity-1,
+    &.severity-2 {
+      border-left-color: $flood-warning;
+    }
+    &.severity-3 {
+      border-left-color: $flood-alert;
+    }
+    &.severity-4 {
+      border-left-color: $flood-expired;
+    }
+    .heading-xlarge {
+      font-size: 60px;
+      padding: 0 0 0 10px;
+      &.flag {
+        color: $white;
+        padding-top: 10px;
+        background-color: $flood-warning;
+      }
+    }
+    .details {
+      padding-left: 10px;
+    }
+    img {
+      height: 51px;
+      vertical-align: top;
+    }
+    .title {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .tagline,
+    .description {
+      @include media(mobile) {
+        font-size: 14px;
+      }
+      @include media(tablet) {
+        font-size: 14px;
+      }
+      @include media(desktop) {
+        font-size: 16px;
+      }
+      text-transform: uppercase;
+    }
+  }
+}

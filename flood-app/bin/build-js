@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# Builds javascript bundles with browserify
+#
+# Usage
+# npm run build:js -- core
+# npm run build:js -- home
+# npm run build:js -- warnings
+# npm run build:js -- map
+# npm run build:js -- riverlevels
+# npm run build:js -- station
+# npm run build:js -- stationsoverview
+
+case "$1" in
+
+'core')
+  echo "Building core.js"
+  ./bin/build-js-core
+  ;;
+'home')
+  echo "Building home.js"
+  ./bin/build-js-home
+  ;;
+'warnings')
+  echo "Building warnings.js"
+  ./bin/build-js-warnings
+  ;;
+'map')
+  echo "Building map.js"
+  ./bin/build-js-map
+  ;;
+'riverlevels')
+  echo "Building riverlevels.js"
+  ./bin/build-js-riverlevels
+  ;;
+'station')
+  echo "Building station.js"
+  ./bin/build-js-station
+  ;;
+'stationsoverview')
+  echo "Building stationsoverview.js"
+  ./bin/build-js-stationsoverview
+  ;;
+*)
+  echo "Building all"
+  ./bin/build-js-core &&
+  ./bin/build-js-home &&
+  ./bin/build-js-warnings &&
+  ./bin/build-js-map &&
+  ./bin/build-js-riverlevels &&
+  ./bin/build-js-station &&
+  ./bin/build-js-stationsoverview
+  ;;
+
+esac

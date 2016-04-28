@@ -1,0 +1,78 @@
+<link rel="stylesheet" type="text/css" property="stylesheet" href="{{{assetPath}}}stylesheets/jquery.dataTables.css">
+<h1 class="heading-large">Stations Overview</h1>
+<table id="stations" class="display" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      <th>rloi ID</th>
+      <th>telemetry ID</th>
+      <th>direction</th>
+      <th>station_type</th>
+      <th>agency_name</th>
+      <th>area</th>
+      <th>catchment</th>
+      <th>status</th>
+      <th>parameter</th>
+      <th>qualifier</th>
+      <th>units</th>
+      <th>value</th>
+      <th>processed_value</th>
+      <th>value_timestamp</th>
+      <th>error</th>
+      <th>age</th>
+      <th>por_max_breached</th>
+      <th>at_risk</th>
+    </tr>
+  </thead>
+  <thead>
+    <tr>
+      <th>rloi ID</th>
+      <th>telemetry ID</th>
+      <th>direction</th>
+      <th>station_type</th>
+      <th>agency_name</th>
+      <th>area</th>
+      <th>catchment</th>
+      <th>status</th>
+      <th>parameter</th>
+      <th>qualifier</th>
+      <th>units</th>
+      <th>value</th>
+      <th>processed_value</th>
+      <th>value_timestamp</th>
+      <th>error</th>
+      <th>age</th>
+      <th>por_max_breached</th>
+      <th>at_risk</th>
+    </tr>
+  </thead>
+  <tbody>
+  {{#each stations}}
+    <tr>
+      <td><a href="/station/{{rloi_id}}?direction={{direction}}">{{rloi_id}}</a></td>
+      <td>{{telemetry_id}}</td>
+      <td>{{direction}}</td>
+      <td>{{station_type}}</td>
+      <td>{{agency_name}}</td>
+      <td>{{area}}</td>
+      <td>{{catchment}}</td>
+      <td>{{status}}</td>
+      <td>{{parameter}}</td>
+      <td>{{qualifier}}</td>
+      <td>{{units}}</td>
+      <td>{{value}}</td>
+      <td>{{processed_value}}</td>
+      <td>{{value_timestamp}}</td>
+      <td>{{error}}</td>
+      <td>{{age}}</td>
+      <td>{{por_max_breached}}</td>
+      <td>{{at_risk}}</td>
+    </tr>
+  {{/each}}
+  </tbody>
+</table>
+<script src="{{{assetPath}}}javascripts/stations-overview.js"></script>
+<script>
+  $(function () {
+    new LFW.StationsOverviewPage()
+  })
+</script>

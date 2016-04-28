@@ -1,0 +1,315 @@
+<link rel="stylesheet" type="text/css" property="stylesheet" href="{{{assetPath}}}stylesheets/ol.css">
+<link rel="stylesheet" type="text/css" property="stylesheet" href="{{{assetPath}}}stylesheets/station/index.css">
+<main id="station-page">
+  {{#if station.isClosed}}
+    <header class="intro">
+      <h1 class="heading-xlarge" data-id="station-heading" tabindex="0">
+        {{#if station.isGroundwater}}
+          Groundwater level information for:<br>
+          {{station.name}} borehole
+        {{else}}
+          {{#if station.isCostal}}Tidal level{{else}}River level{{/if}} information for:<br>
+          {{station.river}} at {{station.name}}{{#if station.isMulti}} ({{station.direction}} data){{/if}}
+        {{/if}}
+      </h1>
+      <br>
+      <mark class="banner-error" data-id="station-banner-message" tabindex="0">
+        This station is closed and no data is available<br>
+        You can see information from nearby stations using <a href="#" id="station-broaden">Broaden your search</a> below.
+      </mark>
+    </header>
+  {{else}}
+    <header class="intro">
+      <h1 class="heading-xlarge" data-id="station-heading" tabindex="0">
+        {{#if station.isGroundwater}}
+          Latest {{title}} information for:<br>
+          {{station.name}} borehole
+        {{else}}
+          Latest {{title}} information for:<br>
+          the {{station.river}} at {{station.name}}{{#if station.isMulti}} ({{station.direction}} data){{/if}}
+        {{/if}}
+      </h1>
+      <time class="form-hint" title="{{formatDate date}}" datetime="{{date}}" tabindex="0">{{formatDate date}}</time>
+      <!-- Station latest value banner -->
+      {{#if recentValue.err}}
+        <mark class="banner-error" data-id="station-banner-message" tabindex="0">
+          The latest {{title}} recorded is unreliable. Reasons for this include very low river levels or a technical fault with the measuring equipment.
+          <br>
+          <br>
+          {{formatDate recentValue.ts}}
+        </mark>
+      {{else}}
+        {{#if station.isSuspended}}
+          <mark class="banner-error" data-id="station-banner-message" tabindex="0">
+            This station is temporarily closed and no data is available.<br>
+            You can see information from nearby stations using <a href="#" id="station-broaden">Broaden your search</a> below.
+          </mark>
+        {{else}}
+          {{#if station.isUkCmf}}
+            <mark class="banner-error" data-id="station-banner-message" tabindex="0">
+              Sea level information for this station is temporarily unavailable on this service.<br>
+              It is available on the Environment Agency's <a rel="external" href="http://apps.environment-agency.gov.uk/river-and-sea-levels/120738.aspx?stationId={{station.id}}">river and sea level service</a>
+            </mark>
+          {{else}}
+            {{#if readings}}
+              <mark class="{{this.bannerClass}}" data-id="station-banner-message" tabindex="0">
+                Latest level<br>
+                <span class="font-large"><strong>{{recentValue._}}m</strong></span>
+                <br>
+                Recorded at {{formatDate recentValue.ts}}
+                <br>
+                <br>
+                <p>{{stationState}}</p>
+              </mark>
+            {{/if}}
+          {{/if}}
+        {{/if}}
+      {{/if}}
+    </header>
+    <section>
+      {{#if station.isMulti}}
+        <p>
+          {{#if station.isDownstream}}
+            <a id="station-{{station.id}}-u" href="{{station.id}}?direction=u">View upstream data for this station</a>
+          {{/if}}
+          {{#if station.isUpstream}}
+            <a id="station-{{station.id}}-d" href="{{station.id}}?direction=d">View downstream data for this station</a>
+          {{/if}}
+        </p>
+        <details>
+          <summary aria-controls="details-cont2016-04-01T04:00Z	ent-ud" aria-expanded="false" role="button">
+            Why are there 2 sets of data for this station?
+          </summary>
+          <div class="panel panel-border-narrow" id="details-content-ud" aria-hidden="true">
+            Some monitoring stations are located near to a man-made structure which affects the river's flow characteristics, for example a weir, or lock.
+            For these stations, we provide river levels from both the upstream and downstream sides of the structure.
+          </div>
+        </details>
+      {{/if}}
+
+      {{#if station.isActive}}
+        <div class="nojs-hide ie-hide">
+          <header>
+            <h3 class="heading-medium">5-day information for this {{#if station.isGroundwater}}location{{else}}station{{/if}}</h3>
+            <!-- If status date has changed within last 5 days then show message indicating this fact -->
+            {{#if outOfDate}}
+              <p>This station&#39;s data feed was recently interrupted. Normal service resumed at {{formatDate station.statusDate "h:mma"}} on {{formatDate station.statusDate "dddd DD MMMM YYYY"}}.</p>
+            {{/if}}
+          </header>
+          <article>
+            {{#if readings}}
+              <div id="dashboard">
+                <div id="station-chart" style="position: relative;"></div>
+                <div id="controls"></div>
+              </div>
+            {{else}}
+              {{#unless outOfDate}}
+                <p>Sorry no data found</p>
+              {{else}}
+                <p>The chart will be visible once the next batch of telemetry data has been imported.</p>
+              {{/unless}}
+            {{/if}}
+          </article>
+        </div>
+        <div class="ie-show">
+          <p>
+            <strong>You&#39;re missing out. A graph should be visible here.</strong><br>
+            <a href="https://www.gov.uk/help/browsers" rel="external">Upgrade your browser to see and use all the features of this service.</a>
+          </p>
+        </div>
+        <div class="nojs-show">
+          <br>
+          <strong>You&#39;re missing out. A graph should be visible here.</strong><br>
+          <p>Javascript must be enabled.</p>
+        </div>
+        {{#if readings}}
+          <table id="telemetry" class="nojs-show">
+            <thead>
+              <tr>
+                <th>DateTime</th>
+                <th>Value</th>
+                <th>Error</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each telemetry}}
+                <tr>
+                  <td>{{ts}}</td>
+                  <td>{{_}}</td>
+                  <td>{{err}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        {{/if}}
+      {{/if}}
+    </section>
+  {{/if}}
+
+  <article data-id="article-more-about-this-station">
+    {{#if station.isGroundwater}}
+      <h2 class="heading-medium" tabindex="0">Groundwater: more information</h2>
+    {{else}}
+      <h2 class="heading-medium" tabindex="0">More about this station</h2>
+    {{/if}}
+    <details>
+      <summary aria-controls="details-content-key-info" aria-expanded="false" role="button">
+        {{#if station.isGroundwater}}
+          About this location
+        {{else}}
+          Key information
+        {{/if}}
+      </summary>
+      <div class="panel panel-border-narrow" id="details-content-key-info" aria-hidden="true">
+        <ul>
+          <li><strong>Station name:</strong> {{station.name}} {{#if station.isMulti}} ({{station.direction}}){{/if}}</li>
+          <li><strong>Station ID:</strong> {{station.id}}</li>
+          {{#unless station.isGroundwater}}
+            <li><strong>{{#if station.isCoastal}}Estuary/harbour:{{else}}River name:{{/if}}</strong> {{station.river}}</li>
+          {{/unless}}
+          {{#if station.isCoastal}}
+            <li><strong>Highest astronomical tide prediction:</strong> {{station.porMaxValue}}mAOD</li>
+          {{else if station.isGroundwater}}
+            <li><strong>Highest level on record:</strong> {{station.porMaxValue}}m on {{formatDate station.porMaxDate "DD MMMM YYYY"}} {{#if station.porMaxValueIsProvisional}} (awaiting validation){{/if}}</li>
+            <li><strong>Lowest level on record:</strong> {{station.porMinValue}}m on {{formatDate station.porMinDate "DD MMMM YYYY"}}</li>
+          {{else}}
+            <li><strong>Typical range:</strong> {{station.percentile95}}m to {{station.percentile5}}m</li>
+            <li><strong>Highest level on record:</strong> {{station.porMaxValue}}m on {{formatDate station.porMaxDate "DD MMMM YYYY"}} {{#if station.porMaxValueIsProvisional}} (awaiting validation){{/if}}</li>
+          {{/if}}
+          <li><strong>Site datum:</strong> {{station.stageDatum}}mAOD (<a href="#summary-express" id="expand-summary-express">what does this mean?</a>)</li>
+        </ul>
+      </div>
+    </details>
+    {{#if station.isGroundwater}}
+      <details>
+        <summary aria-controls="details-content-groundwater-risk" aria-expanded="false" role="button">
+          Can groundwater increase flood risk?
+        </summary>
+        <div class="panel panel-border-narrow" id="details-content-groundwater-risk" aria-hidden="true">
+          <p>
+            If groundwater height is below the level of a building, the risk of flooding from groundwater alone is unlikely.
+            You can find out the height of any location using an ordnance survey map.
+          </p>
+          <p>
+            Flooding is more likely to occur when several things happen together, such as poor weather, high tides and high river and groundwater levels.
+            You can <a href="/">find out more about the latest flood warning information in England and Wales</a>.
+          </p>
+        </div>
+      </details>
+      <details>
+        <summary id="summary-express" aria-controls="details-content-how-groundwater-measured" aria-expanded="false" role="button">
+          How are groundwater levels measured?
+        </summary>
+        <div class="panel panel-border-narrow" id="details-content-how-groundwater-measured" aria-hidden="true">
+          <p>
+            The Environment Agency uses a network of boreholes accross the country. Each one has its own datum - a height in metres fixed relative to mean sea level.
+            This height is expressed as metres above ordnance datum (mAOD).<br>
+            The groundwater levels we provide for each borehole are all relative to its site datum.
+          </p>
+        </div>
+      </details>
+      <details>
+        <summary aria-controls="details-content-when-groundwater-measured" aria-expanded="false" role="button">
+          How often are groundwater levels measured?
+        </summary>
+        <div class="panel panel-border-narrow" id="details-content-when-groundwater-measured" aria-hidden="true">
+          <p>
+            The data we collect is fed into this service once a day under normal conditions.<br>
+            We increase this frequency whenever there's a greater risk of flooding.
+          </p>
+        </div>
+      </details>
+    {{else}}
+      <details>
+        <summary id="summary-express" aria-controls="details-content-how-measured" aria-expanded="false" role="button">
+          {{#if station.isCoastal}}How are tide levels in coastal and estuary areas measured?{{else}}How are river levels measured?{{/if}}
+        </summary>
+        <div class="panel panel-border-narrow" id="details-content-how-measured" aria-hidden="true">
+          {{#unless station.isCoastal}}
+            <p>The Environment agency uses a network of monitoring stations across the country. Each one has its own datum - a height in metres fixed relative to mean sea level. This height is expressed as metres above ordnance datum (mAOD). The river levels we provide for each monitoring station are all relative to its site datum.</p>
+            <p>If we didn't do this, we'd show some very high measurements, which could cause confusion. By using a local site datum, the river levels are easier to understand, especially by users familiar with the data from a particular monitoring station.</p>
+            <p>A river's height above ordnance datum can be seen by adding the site datum to the river level.</p>
+          {{else}}
+            <p>Tide levels in coastal and estuary areas are shown in metres above mean sea level, or ordnance datum (mAOD).</p>
+            <p>Monitoring stations in these locations do have their own datum - a height in metres fixed relative to mean sea level. But, because of their location, these stations usually have the same datum as actual mean sea level. So it's expressed as zero metres.</p>
+          {{/unless}}
+        </div>
+      </details>
+      <details>
+        <summary aria-controls="details-content-when-measured" aria-expanded="false" role="button">
+          How often are river and sea levels measured?
+        </summary>
+        <div class="panel panel-border-narrow" id="details-content-when-measured" aria-hidden="true">
+          <p>The data we collect is fed into this service once or twice a day under typical conditions. We increase this frequency whenever there's a greater risk of flooding.</p>
+        </div>
+      </details>
+      {{#unless station.isCoastal}}
+        <details>
+          <summary aria-controls="details-content-flood-risk" aria-expanded="false" role="button">
+            How might river levels affect flood risk?
+          </summary>
+          <div class="panel panel-border-narrow" id="details-content-flood-risk" aria-hidden="true">
+            <div><strong>Typical range</strong></div>
+            <p>This is the usual range of river levels at this station, based on historical data.</p>
+            <div><strong>Above typical</strong></div>
+            <p>
+              This means that flooding is possible because river levels at this station are currently higher than usual.<br>
+              Many factors can influence the possibility of flooding - river levels are only one indicator. Always <a href='/' title="Check for flood warnings">check if there's a flood warning in place</a> at a particular location.
+            </p>
+            <div><strong>Below typical</strong></div>
+            <p>
+              This means that river levels at this station are currently lower than usual.<br>
+              Drought or water management measures may be in place. Please check for the latest information on water resources and restrictions in your area.
+            </p>
+          </div>
+        </details>
+      {{/unless}}
+    {{/if}}
+  </article>
+
+  <article class="nojs-hide ie-hide" id="map-article">
+    <h2 class="heading-medium">Broaden your search</h2>
+    <details id="station-map-details">
+      <summary aria-controls="station-map-details-content" aria-expanded="false" role="button">
+        {{#if station.isGroundwater}}
+          See a map of river and sea level information for this area
+        {{else}}
+          See more river and sea level information from nearby locations
+        {{/if}}
+      </summary>
+      <div class="details-content" id="station-map-details-content" aria-hidden="true">
+        <div id="map-container">
+          {{> 'river-levels/station-map'}}
+        </div>
+      </div>
+    </details>
+  </article>
+  <div class="ie-show">
+    <p>
+      <strong>You&#39;re missing out. A map should be visible here.</strong><br>
+      <a href="https://www.gov.uk/help/browsers" rel="external">Upgrade your browser to see and use all the features of this service.</a>
+    </p>
+  </div>
+  <div class="nojs-show">
+    <br>
+    <strong>You&#39;re missing out. A map should be visible here.</strong><br>
+    <p>Javascript must be enabled.</p>
+  </div>
+</main>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="{{{assetPath}}}javascripts/station.js"></script>
+<script>
+  google.charts.load('current', {'packages':['corechart','controls']})
+
+  $(function () {
+    google.charts.setOnLoadCallback(function(){
+      new LFW.StationPage({
+        map: {
+          stationId: {{station.id}},
+          centroid: {{{centroidJSON}}}
+        },
+        station: {{{stationJSON}}}
+      })
+    })
+  })
+</script>
